@@ -1,0 +1,65 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+
+		sc.nextLine();
+
+		String str = sc.nextLine();
+
+		int max = 0;
+		
+		for(int i = 0 ; i<n ; i++)
+		{
+			int count = 0;
+			int si = i;
+			for(int j = i+1 ; j<=n ; j++)
+			{
+				String temp = str.substring(si,j);
+				if( CBNumber(temp) )
+				{
+					count++;
+					si = j;
+				}
+			}
+
+			if( count > max)
+				{
+					max = count;
+				}
+		}
+
+		System.out.println(max);
+    }
+
+	public static boolean CBNumber(String str)
+	{
+		long num = Long.parseLong(str);
+
+		if( num <= 1)
+		{
+			return false;
+		}
+
+		long [] arr = {2,3,5,7,11,13,17,19,23,29};
+
+		for(int i = 0 ; i<arr.length ; i++)
+		{
+			if( num == arr[i])
+			{
+				return true;
+			}
+		}
+		for(int i = 0 ; i<arr.length ; i++)
+		{
+			if( num % arr[i] == 0)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+}
